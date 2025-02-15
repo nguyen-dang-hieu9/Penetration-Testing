@@ -1,0 +1,37 @@
+html
+  head
+    title Bug Search
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src="https://code.jquery.com/jquery-3.6.3.min.js"
+           integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+           crossorigin="anonymous")
+    script(src='/javascript/index.js')
+  body
+    h1 Bug Reports
+    br
+    table
+      thead
+        tr
+          th ID
+          th Category
+          th Description
+          th Severity
+          th CVSS
+          th Status
+          th Reported Date
+      tbody
+        each bug in data
+          tr
+            td #{bug.id}
+            td #{bug.category}
+            td #{bug.description}
+            td #{bug.severity}
+            td #{bug.cvss_score}
+            td #{bug.status}
+            td #{bug.reported_date}
+    p Check Report Status by ID
+    input(type="text", placeholder="bug ID", id="id", style="width: 25%")
+    br
+    br
+    #res-container
+    br

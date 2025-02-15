@@ -1,0 +1,68 @@
+---
+services:
+  meme-app:
+    build: ./meme-app
+    read_only: true
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    environment:
+      MINIO_ADDRESS: "os"
+      ADMIN_USERNAME: "REDACTED"
+      ADMIN_PASSWORD: "REDACTEDREDACTEDREDACTEDREDACTED"
+      BOT_ADDRESS: "http://bot:3001/show"
+      SECRET_KEY: "REDACTED"
+      MY_USER: "MYNAME"
+      MY_PASS: "REDACTEDREDACTEDREDACTEDREDACTED"
+      APP_ADDRESS: "http://meme-app:3000"
+    depends_on:
+      - createbuckets
+    volumes:
+      - type: tmpfs
+        target: /tmp
+  os:
+    image: quay.io/minio/minio
+    command: server /data
+    restart: unless-stopped
+    read_only: true
+    environment:
+      MINIO_ROOT_USER: "REDACTED"
+      MINIO_ROOT_PASSWORD: "REDACTED"
+    volumes:
+      - type: tmpfs
+        target: /data
+  bot:
+    build: ./bot
+    restart: unless-stopped
+    read_only: true
+    environment:
+      BOT_LOGIN_URL: "http://meme-app:3000/login"
+      ADMIN_USERNAME: "REDACTED"
+      ADMIN_PASSWORD: "REDACTEDREDACTEDREDACTEDREDACTED"
+      FLAG: "snakeCTF{REDACTED}"
+    volumes:
+      - type: tmpfs
+        target: /tmp
+      - type: tmpfs
+        target: /root/.config
+  createbuckets:
+    image: minio/mc
+    depends_on:
+      - os
+    environment:
+      MINIO_ADDRESS: "os"
+      MINIO_ROOT_USER: "REDACTED"
+      MINIO_ROOT_PASSWORD: "REDACTED"
+    entrypoint: >
+      /bin/sh -c "
+      set -e;
+      /usr/bin/mc config host add myminio http://$$MINIO_ADDRESS:9000 $$MINIO_ROOT_USER $$MINIO_ROOT_PASSWORD;
+      while ! mc ready myminio; do echo 'Wait minio to startup...' && sleep 1; done;
+      /usr/bin/mc mb myminio/memes;
+      /usr/bin/mc mb myminio/supermemes;
+      /usr/bin/mc anonymous set public myminio/memes;
+      /usr/bin/mc anonymous set public myminio/supermemes;
+      /usr/bin/mc quota set myminio/memes --size 1m;
+      /usr/bin/mc quota set myminio/supermemes --size 1m;
+      exit 0;
+      "

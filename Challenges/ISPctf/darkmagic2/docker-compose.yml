@@ -1,0 +1,8 @@
+version: "3"
+services:
+  web:
+    build: ./
+    ports:
+      - "5001:8888"
+    volumes:
+      - ./app:/app

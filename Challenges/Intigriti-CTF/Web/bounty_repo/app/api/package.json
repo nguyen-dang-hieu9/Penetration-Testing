@@ -1,0 +1,20 @@
+{
+    "name": "BugBountyRepo",
+    "version": "4.2.0",
+    "description": "Bug reports that have been/need to be triaged",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "author": "cryptocat",
+    "dependencies": {
+        "body-parser": "^1.20.2",
+        "express": "^4.18.2",
+        "express-ws": "^5.0.2",
+        "jake": "^10.8.5",
+        "jquery": "^3.6.3",
+        "path": "^0.12.7",
+        "pug": "^3.0.2",
+        "sqlite3": "^5.1.4"
+    }
+}

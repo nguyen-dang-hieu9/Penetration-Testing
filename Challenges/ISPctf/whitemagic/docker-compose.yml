@@ -1,0 +1,8 @@
+version: "3"
+services:
+  web1:
+    build: .
+    volumes:
+      - ./src:/var/www/html
+    ports:
+      - "8888:80"

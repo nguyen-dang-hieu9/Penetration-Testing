@@ -1,0 +1,35 @@
+# collision inputs taken from https://www.mscs.dal.ca/~selinger/md5collision/
+# As you can see they produce the same MD5 hash
+$ echo -n 'd131dd02c5e6eec4693d9a0698aff95c2fcab58712467eab4004583eb8fb7f8955ad340609f4b30283e488832571415a085125e8f7cdc99fd91dbdf280373c5bd8823e3156348f5bae6dacd436c919c6dd53e2b487da03fd02396306d248cda0e99f33420f577ee8ce54b67080a80d1ec69821bcb6a8839396f9652b6ff72a70' | xxd -r -p | md5  
+79054025255fb1a26e4bc422aef54eb4
+$ echo -n 'd131dd02c5e6eec4693d9a0698aff95c2fcab50712467eab4004583eb8fb7f8955ad340609f4b30283e4888325f1415a085125e8f7cdc99fd91dbd7280373c5bd8823e3156348f5bae6dacd436c919c6dd53e23487da03fd02396306d248cda0e99f33420f577ee8ce54b67080280d1ec69821bcb6a8839396f965ab6ff72a70' | xxd -r -p | md5  
+79054025255fb1a26e4bc422aef54eb4
+
+# Now add 01 to the end of both of them.
+# The hash will be different from above but they will still produce a collision.
+$ echo -n 'd131dd02c5e6eec4693d9a0698aff95c2fcab58712467eab4004583eb8fb7f8955ad340609f4b30283e488832571415a085125e8f7cdc99fd91dbdf280373c5bd8823e3156348f5bae6dacd436c919c6dd53e2b487da03fd02396306d248cda0e99f33420f577ee8ce54b67080a80d1ec69821bcb6a8839396f9652b6ff72a7001' | xxd -r -p | md5  
+6f07f1999ff30af1ce7299887e89fd3f
+$ echo -n 'd131dd02c5e6eec4693d9a0698aff95c2fcab50712467eab4004583eb8fb7f8955ad340609f4b30283e4888325f1415a085125e8f7cdc99fd91dbd7280373c5bd8823e3156348f5bae6dacd436c919c6dd53e23487da03fd02396306d248cda0e99f33420f577ee8ce54b67080280d1ec69821bcb6a8839396f965ab6ff72a7001' | xxd -r -p | md5
+6f07f1999ff30af1ce7299887e89fd3f
+
+# The same works with SHA1.
+# You can download two pdf files that have a SHA1 collision from this repo:
+# https://github.com/cr-marcstevens/sha1collisiondetection/tree/855827c583bc30645ba427885caa40c5b81764d2/test
+
+# The SHA1 hashes of both are the same:
+$ shasum shattered-1.pdf 
+38762cf7f55934b34d179ae6a4c80cadccbb7f0a  shattered-1.pdf
+$ shasum shattered-2.pdf
+38762cf7f55934b34d179ae6a4c80cadccbb7f0a  shattered-2.pdf
+
+# Now lets add "foobar" to the end:
+$ cp shattered-1.pdf shattered-1a.pdf
+$ cp shattered-2.pdf shattered-2a.pdf
+$ echo -n foobar >> shattered-1a.pdf 
+$ echo -n foobar >> shattered-2a.pdf
+
+# The SHA1 hashes are different from above but again still the same.
+$ shasum shattered-1a.pdf
+ac2835f2e2c697c67b7504477b4613231e98b951  shattered-1a.pdf
+$ shasum shattered-2a.pdf
+ac2835f2e2c697c67b7504477b4613231e98b951  shattered-2a.pdf

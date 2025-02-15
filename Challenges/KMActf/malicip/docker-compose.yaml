@@ -1,0 +1,22 @@
+
+services:
+  web:
+    platform: linux/amd64
+    build: ./web
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    platform: linux/amd64
+    build: ./db
+    restart: unless-stopped
+    environment:
+      - MYSQL_USER=malicip
+      - MYSQL_PASSWORD=malicip
+      - MYSQL_DATABASE=malicip
+      - MYSQL_ALLOW_EMPTY_PASSWORD=ok luon
+    # ports:
+    #   - "33306:3306"

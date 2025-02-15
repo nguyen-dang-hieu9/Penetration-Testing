@@ -1,0 +1,5 @@
+urllib3
+flask
+selenium
+webdriver_manager
+Pillow

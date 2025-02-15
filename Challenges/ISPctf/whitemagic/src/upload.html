@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title>Home</title>
+    <!-- add css -->
+    <link rel="stylesheet" href="static/css/index.css">
+    <!-- add js -->
+    <script src="static/js/index.js"></script>
+  </head>
+  <body>
+    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <a href="/index.php">Home</a>
+    <a href="/upload.html">Upload</a>
+    <form action="upload.php" method="POST" enctype="multipart/form-data">
+      <div class="file-upload">
+        <button class="file-upload-btn" type="submit">Add Image/Zip</button>
+
+        <div class="image-upload-wrap">
+          <input class="file-upload-input" name="file2upload" type='file' onchange="readURL(this);" accept="image/*" />
+          <div class="drag-text">
+            <h3>Drag and drop a file or select add Image/Zip</h3>
+          </div>
+        </div>
+        <div class="file-upload-content">
+          <img class="file-upload-image" src="#" alt="your image" />
+          <div class="image-title-wrap">
+            <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block body %}
+    <h1>Have some fun!</h1>
+    <div>
+        <img src="/get/{{meme}}" width="500px" height="500px">
+    </div>
+    <div>
+        <a href="/list/{{prev}}">Previous</a>
+        <a href="/">Home</a>
+        <a href="/list/{{next}}">Next</a>
+        <a href="/list/{{meme}}/maketheadminlaugh">Show it to the admin</a>
+        <a href="/delete/{{meme}}">Delete the meme</a>
+    </div>
+    <div>
+        <p>Comments:</p>
+        {% for comment in comments: %}
+            <div>
+                <h3>User: {{comment[0]}}</h3>
+                <blockquote>{{comment[1]}}</blockquote>
+            </div>
+        {% endfor %}
+        <form action="/comment/{{meme}}" method="POST">
+            <label for="comment">Add your comment</label>
+            <input type="text" name="comment" />
+            <input type="submit" value="Post">
+        </form>
+    </div>
+{% endblock %}
