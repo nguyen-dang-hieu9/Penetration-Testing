@@ -1,1 +1,0 @@
-document.cookie = "Flag 5/5=e4a541}"; 

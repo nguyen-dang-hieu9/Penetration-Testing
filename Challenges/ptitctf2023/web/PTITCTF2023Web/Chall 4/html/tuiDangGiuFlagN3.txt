@@ -1,1 +1,0 @@
-PTITCTF{mot_bai_lfi_co_ban_ma_phai_khong}

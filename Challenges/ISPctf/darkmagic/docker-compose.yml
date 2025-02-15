@@ -1,9 +1,0 @@
-version: "3"
-services:
-  web:
-    platform: linux/amd64
-    build: ./
-    ports:
-      - "8888:8888"
-    volumes:
-      - ./app:/app

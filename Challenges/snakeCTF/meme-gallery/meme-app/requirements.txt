@@ -1,5 +1,0 @@
-flask
-python-mimeparse
-gunicorn
-minio
-requests

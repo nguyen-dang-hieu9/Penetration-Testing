@@ -1,9 +1,0 @@
-services:
-  sentiment:
-    build: .
-    ports:
-      - "3001:3001"
-    environment:
-      - COOKIE_SECRET=AAAA
-      - FLAG_COOKIE_VALUE="bctf{local_flag}.IEjissTT5x+oI+7tMyKMC6P63Grq+mxdnEbztc4MXTQ"
-      - FLAG_COOKIE_DOMAIN=localhost

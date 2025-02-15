@@ -1,5 +1,0 @@
-# Latex
-
-## Description
-
-## Topics
