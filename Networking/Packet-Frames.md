@@ -12,6 +12,8 @@ Packets là 1 cách hiệu quả để giao tiếp dữ liệu qua các thiết 
 
 Ví dụ, khi tải 1 hình ảnh từ 1 trang web, hình ảnh không được gửi toàn bộ đến máy tính của bạn mà là những mảnh nhỏ rồi ghép lại.
 
+ <img width="468" height="175" alt="image" src="https://github.com/user-attachments/assets/e934f994-2e7c-42a3-a5ec-b0ad2e445810" />
+
 Packets có nhiều cấu trúc khác nhau phụ thuộc vào loại packet đang được gửi. Như chúng ta đã thảo luận, mạng là toàn bộ những giao thức và tiêu chuẩn thiết lập 1 bộ qui tắc về cách packet được xử lí trên 1 thiết bị. Trong thực tế, có khoảng chừng 50 tỉ thiết bị kết nối cho đến cuối năm 2020, mọi thứ sẽ ngoài tầm kiểm soát nếu không có sự tiêu chuẩn. 
 
 Ví dụ về giao thức internet protocol 1 packet sử dụng giao thức này sẽ có những headers chứa các phần thông tin bổ sung cho dữ liệu đang gửi qua mạng.
@@ -69,6 +71,8 @@ TIếp theo chúng ta sẽ thảo luận về Three-way handshake thuật ngữ 
 | 5 | FIN | This packet is used to *cleanly (properly)* close the connection after it has been complete. |
 | # | RST | This packet abruptly ends all communication. This is the last resort and indicates there was some problem during the process. For example, if the service or application is not working correctly, or the system has faults such as low resources. |
 
+ <img width="468" height="336" alt="image" src="https://github.com/user-attachments/assets/d2273855-a26a-4678-a8d5-02658dfa3615" />
+
 Mọi dữ liệu đã gửi đều được cung cấp 1 chuỗi số ngẫu nhiên và được xây dựng lại bằng cách sử dụng chuỗi số này và tăng thêm 1.
 
 1. SYN – Client: đây là số ngẫu nhiên ban đầu của tôi để đồng bộ hóa (0)
@@ -91,6 +95,8 @@ Mọi dữ liệu đã gửi đều được cung cấp 1 chuỗi số ngẫu nh
 Vì TCP duy trì hệ thống những mã nguồn trên 1 thiết bị, cách tốt nhất là đóng các kết nối TCP càng sớm càng tốt.
 
 Để bắt đầu đóng kết nối TCP, thiết bị sẽ gửi 1 gói tin FIN đến thiết bị khác. Tất nhiên với TCP, thiết bị khác cũng sẽ xác nhận gói tin đó. 
+
+ <img width="468" height="284" alt="image" src="https://github.com/user-attachments/assets/b1d88e82-7823-4294-8960-8cb053f8b738" />
 
 Trong hình minh họa, chúng ta có thể thấy Alice đã gửi Bob 1 gói tin FIN. Bob sẽ cho Alice biết mình đã nhận được nó và anh ấy cũng muốn đóng kết nối (sử dụng FIN). Alice đã nghe thấy Bob và sẽ để Bob biết mình xác nhận điều đó.
 
@@ -124,6 +130,8 @@ Những gói tin UDP thì đơn giản hơn TCP nhiều và ít headers hơn. Tu
 Tiếp theo, chúng ta sẽ thảo luận về quá trình kết nối qua UDP khác với TCP như thế nào.
 
 UDP là giao thức phi trạng thái. Không có sự xác nhận trong quá trình kết nối.
+
+ <img width="468" height="231" alt="image" src="https://github.com/user-attachments/assets/40173a40-17b8-4d98-9f37-fb364440b94e" />
 
 # **Ports 101** 
 
