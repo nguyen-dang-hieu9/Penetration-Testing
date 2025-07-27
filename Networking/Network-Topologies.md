@@ -12,6 +12,8 @@ Bởi vì nhiều cáp hơn và việc mua thiết bị mạng chuyên dụng r�
 
 Không may mắn, quy mô của mạng càng lớn, càng cần bảo trì mạng nhiều hơn. Sự phụ thuộc vào bảo trì ngày càng tăng cũng có thể làm cho việc khắc phục sự cố trở nên khó khăn hơn. Hơn nữa , kết cấu dạng sao này rất dễ bị thất bại. Ví dụ, nếu phần cứng trung tâm kết nối các thiết bị thất bại, những thiết bị khác không thể nhận hay gửi dữ liệu. Rất may, các thiết bị phần cứng trung tâm này thường rất mạnh mẽ. 
 
+ <img width="468" height="283" alt="image" src="https://github.com/user-attachments/assets/f95807d2-fdb9-4424-8bec-a00e9741ea8a" />
+
 ## **Kết cấu mạng dạng Bus:**
 
 Loại kết nối này dựa trên 1 kết nối duy nhất được gọi là cáp xương sống.
@@ -24,6 +26,8 @@ Tuy vậy , kết cấu này là 1 trong những cấu trúc liên kết dễ d�
 
 Cuối cùng, 1 điểm bất lợi khác của kết cấu này là có rất ít sự dư thừa nếu xảy ra lỗi. Nếu cáp bị phá vỡ, những thiết bị sẽ không còn nhận hay gửi dữ liệu theo tuyến được. 
 
+ <img width="468" height="241" alt="image" src="https://github.com/user-attachments/assets/8d250b0b-a853-46e1-b9c2-59960328302c" />
+
 ## **Kết cấu mạng dạng Ring:**
 
 Những thiết bị như máy tính được kết nối trực tiếp với máy khác tạo thành 1 vòng lặp. Điều này có nghĩa là cần rất ít cáp và sự phụ thuộc vào phần cứng chuyên dụng như trong kết cấu dạng sao.
@@ -34,6 +38,8 @@ Vì dữ liệu chỉ có 1 hướng để truyền, nó rất dễ khắc phụ
 
 Cuối cùng, kết cấu mạng dạng ring rất ít bị tắc nghẽn vì không có lưu lượng lớn mạng trong 1 lần. Tuy nhiên, chỉ cần cáp bị đứt hay thiết bị bị hỏng sẽ dẫn đến toàn bộ mạng bị hỏng.
 
+ <img width="468" height="279" alt="image" src="https://github.com/user-attachments/assets/530bddc6-b04b-414e-870c-96836d1152ee" />
+
 # **Switch**
 
 Switches là những thiết bị chuyên dụng trong 1 mạng được thiết kế để tổng hợp nhiều thiết bị khác nhau như: máy tính, máy in hoặc bất kỳ thiết bị nào có khả năng kết nối mạng sử dụng ethernet. Các thiết bị khác nhau này cắm vào cổng của Switch.
@@ -43,6 +49,8 @@ Switches thường được tìm thấy ở những mạng lớn hơn như doanh
 Switches có thể hoạt động ở lớp 2 và lớp 3 của mô hình OSI 
 
 Lấy ví dụ switch ở lớp 2. Nó sẽ chuyển tiếp frames (nhớ là sẽ không có packets vì không có địa chỉ IP) cho những thiết bị kết nối bằng việc sử dụng địa chỉ MAC.
+
+ <img width="468" height="419" alt="image" src="https://github.com/user-attachments/assets/7a014c76-bbe5-41a0-9e71-55dd643bb22d" />
 
 Những switch này chịu trách nhiệm gửi frame cho đúng thiết bị.
 
@@ -57,9 +65,13 @@ Cùng xem hình minh họa về cách switch lớp 3 hoạt động. Chúng ta t
 
 Một công nghệ gọi là VLAN (Virtual Local Area Network) cho phép những thiết bị cụ thể trong 1 mạng được chia nhỏ. Điều này có nghĩa là chúng đều hưởng lợi từ những thứ như kết nối Internet. Sự tách biệt này đem lại biện pháp bảo mật vì chúng xác định cách các thiết bị giao tiếp với nhau.
 
+ <img width="468" height="424" alt="image" src="https://github.com/user-attachments/assets/24f8e830-5bba-4580-b2ee-b20bf5027d6a" />
+
 Trong bối cảnh trên, “Sales Department” và “Accounting Department” sẽ có thể truy cập Internet nhưng không thể giao tiếp với nhau (mặc dù chúng kết nối cùng switch)
 
 Switches thường hiệu quả hơn đối thủ của chúng (hubs/repeaters). Switches theo dõi thiết bị nào được kết nối với cổng nào. Nhờ đó, khi chúng nhận 1 gói tin, thay vì lặp lại gói đó ở mỗi cổng mà hub đã làm, nó chỉ gửi đến 1 đối tượng nhất định. Nhờ đó giảm được lưu lượng mạng.
+
+ <img width="468" height="245" alt="image" src="https://github.com/user-attachments/assets/7da08e08-72d6-40ee-9e93-e17ef42e3eba" />
 
 Cả switches và routers đều có thể được kết nối với nhau. Điều này giúp tăng sự dư thừa của mạng bằng việc thêm nhiều đường dẫn dữ liệu. Nếu đường dẫn này bị hỏng, cái khác có thể được dùng. Mặc dù điều này có thể làm giảm toàn bộ hiệu suất của mạng vì những gói tin cần vận chuyển lâu hơn, nhưng không có thời gian chết.
 
@@ -70,6 +82,8 @@ Công việc của router là kết nối các mạng và gửi dữ liệu gi�
 Định tuyến (routing) liên quan đến việc tạo 1 đường dẫn giữa các mạng để mà dữ liệu được vận chuyển thành công.
 
 Định tuyến rất hữu dụng khi các thiết bị được kết nối bằng nhiều đường dẫn khác nhau, như ví dụ bên dưới:
+
+ <img width="468" height="158" alt="image" src="https://github.com/user-attachments/assets/5ed2f91b-fe2c-4b38-b259-3dba7f9b4e11" />
 
 Routers hoạt động ở lớp 3 trong mô hình OSI. 
 
@@ -93,10 +107,13 @@ Lấy doanh nghiệp làm ví dụ. Bạn sẽ có những phòng ban khác nhau
     
 * Tài nguyên con người
     
+ <img width="468" height="300" alt="image" src="https://github.com/user-attachments/assets/0b920822-8549-4899-8f1c-015fb9ecbfea" />
 
 Trong khi bạn biết gửi thông tin đến đúng phòng ban trong thực tế thì mạng cũng cần biết. Nhà quản trị mạng dùng mạng con để phân loại và gán các phần cụ thể của mạng cho chúng.
 
 Mạng con được tạo ra bằng cách chia nhỏ số lượng máy chủ có thể phù hợp với mạng, đại diện bởi 1 con số là subnet mask
+
+ <img width="468" height="234" alt="image" src="https://github.com/user-attachments/assets/30540184-1e8a-4262-bbea-91a43f08ed02" />
 
 1 subnet mask rất giống với địa chỉ IP
 
@@ -162,6 +179,8 @@ Khi 1 ARP yêu cầu được gửi đi, 1 tin nhắc được truyền đến m
 
 Quá trình này được mô phỏng như sau:
 
+ <img width="468" height="383" alt="image" src="https://github.com/user-attachments/assets/0fec4c78-ed1c-4951-a30f-08f00ee85153" />
+
 # **Giao thức DHCP:** 
 
 Địa chỉ IP có thể được gán thủ công bằng cách nhập chúng vào thiết bị hoặc tự động và phổ biến nhất là sử dụng máy chủ DHCP (Dynamic Host Configuration Protocol).
@@ -169,3 +188,5 @@ Quá trình này được mô phỏng như sau:
 Khi 1 thiết bị kết nối mạng, nếu nó không được gán địa chỉ IP thủ công, nó sẽ gửi 1 yêu cầu (DHCP Discover) để xem có bất cứ máy chủ DHCP nào trên mạng không. Máy chủ DHCP sau đó sẽ phản hồi lại bằng địa chỉ IP mà thiết bị có thể sử dụng (DHCP Offer).
 
 Sau đó, thiết bị sẽ  gửi 1 phản hồi xác nhận nó muốn địa chỉ IP đó (DHCP Request). Cuối cùng, máy chủ DHCP xác nhận quá trình này đã hoàn tất và thiết bị có thể sử dụng địa chỉ IP đó (DHCP ACK).
+
+ <img width="468" height="539" alt="image" src="https://github.com/user-attachments/assets/747ad20b-d9a4-43e8-b59e-22f50695fa78" />
