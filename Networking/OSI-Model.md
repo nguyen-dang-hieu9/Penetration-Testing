@@ -10,11 +10,15 @@ Nó có 7 lớp, mỗi lớp có trách nhiệm khác nhau và xếp từ lớp 
 
 Ở mỗi lớp dữ liệu đi qua, những quá trình cụ thể sẽ xảy ra và một ít thông tin được thêm vào dữ liệu này.
 
+ <img width="468" height="300" alt="image" src="https://github.com/user-attachments/assets/adf664da-1053-471a-b7f1-829fa04352b8" />
+
 # **Lớp 7: Ứng dụng**
 
 Lớp ứng dụng của mô hình OSI là lớp bạn quen thuộc nhất. Vì lớp ứng dụng là lớp trong đó có các giao thức và qui tắc để xác định cách người dùng nên tương tác với dữ liệu được gửi hoặc nhận.
 
 Các ứng dụng hàng ngày như email, trình duyệt hay phần mềm duyệt tập tin trên máy chủ như FileZilla cung cấp 1 giao diện thân thiện để người dùng tương tác với dữ liệu được nhận hoặc gửi đi. Những giao thức khác bao gồm DNS là cách địa chỉ trang web được dịch sang địa chỉ IP. 
+
+ <img width="468" height="238" alt="image" src="https://github.com/user-attachments/assets/474d2d9c-6f94-41b3-a93f-ee4e9c35caf1" />
 
 # **Lớp 6: Trình bày**
 
@@ -59,6 +63,8 @@ TCP được dùng cho những tình huống như chia sẻ tập tin, duyệt w
 
 Chúng ta có thể thấy 1 hình ảnh của con chó được chia ra thành những gói dữ liệu nhỏ từ máy chủ web, trong đó máy tính sẽ sắp xếp lại hình ảnh cho đúng trình tự.
 
+ <img width="468" height="175" alt="image" src="https://github.com/user-attachments/assets/e37f6e1d-760a-4a43-8908-9310347ae56d" />
+
 Bây giờ cùng tìm hiểu UDP (User Datagram Protocol). Giao thức này gần như không tiên tiến như người anh em của nó – TCP.
 
 Nó không đem lại nhiều tính năng như TCP như kiểm tra lỗi và sự đáng tin cậy. Trong thực tế, bất cứ dữ liệu nào được gửi qua UDP đều được gửi đến máy tính  cho dù nó có đến đó hay không. Không có sự đồng bộ hóa giữa hai thiết bị hoặc bảo đảm.
@@ -70,6 +76,8 @@ Nó không đem lại nhiều tính năng như TCP như kiểm tra lỗi và s�
 | UDP không duy trì kết nối trên 1 thiết bị mà TCP làm | Các kết nối không ổn định dẫn đến trải nghiệm tồi tệ cho người dùng |
 
 Chúng ta có thể thấy chỉ gói 1 và gói 3 được nhận bởi máy tính. Điều này có nghĩa là 1 nửa bức tranh bị bỏ.
+
+ <img width="468" height="175" alt="image" src="https://github.com/user-attachments/assets/e768b66f-ab40-4044-a3be-ce8480118f97" />
 
 UDP rất hữu dụng trong tình huống có 1 lượng nhỏ dữ liệu được gửi. Ví dụ, giao thức được dùng để khám phá những thiết bị (ARP và DHCP)  hoặc những tập tin lớn như video (vẫn OK nếu một vài phần của video bị pixel. Pixel là những dữ liệu bị mất đi)
 
@@ -110,3 +118,5 @@ Nó nhắc đến những thành phần của phần cứng dùng trong mạng v
 Những thiết bị dùng tín hiệu điện để truyền dữ liệu với nhau trong hệ thống nhị phân (0 và 1) 
 
 Ví dụ, cáp quang kết nối các thiết bị.
+
+ <img width="468" height="351" alt="image" src="https://github.com/user-attachments/assets/fa127a37-8e71-47cb-a57f-de82ce56c400" />
